@@ -1,0 +1,41 @@
+{
+  "name": "PinGrab - Pinterest Video Downloader",
+  "short_name": "PinGrab",
+  "description": "Download Pinterest videos and cover images in HD. Free, no watermark, no sign-up.",
+  "id": "/",
+  "start_url": "./?utm_source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#fffaf8",
+  "theme_color": "#e60023",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["utilities", "multimedia", "video"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "icons/screenshot-wide.png", "sizes": "1280x720", "type": "image/png", "form_factor": "wide", "label": "PinGrab downloader" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Download a video",
+      "short_name": "Download",
+      "description": "Paste a Pinterest link and save the video",
+      "url": "./#downloader",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Help centre",
+      "short_name": "Help",
+      "description": "Step-by-step guides and troubleshooting",
+      "url": "./help.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

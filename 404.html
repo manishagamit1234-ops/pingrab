@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found - PinGrab</title>
+<meta name="description" content="That page does not exist. Go back to the PinGrab Pinterest video downloader.">
+<meta name="theme-color" content="#fffaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#120b0e" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, follow">
+
+<link rel="icon" href="icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('pingrab_theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* ignore */ }
+  })();
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-56Z4LHXTWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-56Z4LHXTWY');
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/pages.js" defer></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9399495098326825" crossorigin="anonymous"></script></head>
+
+<body>
+<div class="opterik-bar"><a href="https://opterik.com/" rel="noopener" target="_blank">← Back to Opterik.com</a></div>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="PinGrab home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <defs><linearGradient id="pg-brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff334b"/><stop offset="1" stop-color="#d4001f"/></linearGradient></defs>
+        <rect width="64" height="64" rx="16" fill="url(#pg-brand)"/>
+        <circle cx="32" cy="26" r="14.5" fill="#fff"/>
+        <path d="M20.5 35.5h23L32 51z" fill="#fff"/>
+        <rect x="29.4" y="16.5" width="5.2" height="12.8" rx="2.6" fill="url(#pg-brand)"/>
+        <path d="M24.1 28.3h15.8L32 37.6z" fill="url(#pg-brand)"/>
+      </svg>
+      <span class="brand-name">Pin<span>Grab</span></span>
+    </a>
+
+    <button class="nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html#downloader">Downloader</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="help.html">Help</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost" type="button" id="theme-toggle" aria-label="Toggle dark mode" title="Light / dark">
+        <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <div class="container page">
+    <header class="page-header">
+      <p class="eyebrow"><span class="dot"></span> <b>Error 404</b></p>
+      <p class="error-code">404</p>
+      <h1>This pin isn't on the board</h1>
+      <p>The page you were looking for has moved or never existed. The downloader is still right here.</p>
+      <p style="margin-top:22px">
+        <a class="btn btn-primary btn-lg" href="index.html#downloader">Download a Pinterest video</a>
+        <a class="btn btn-lg" href="help.html">Visit the help centre</a>
+      </p>
+    </header>
+
+    <div class="prose">
+      <div class="callout">
+        <p><b>Looking for something specific?</b> Try the <a href="index.html">home page</a>, read the <a href="index.html#faq">FAQ</a>, or check the <a href="terms.html">terms of use</a> and <a href="privacy.html">privacy policy</a>.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2026</span> PinGrab. All rights reserved.</p>
+      <p>Not affiliated with Pinterest, Inc. Pinterest is a trademark of Pinterest, Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,2 @@
+# PinGrab has no third-party Python dependencies.
+# This file exists so platforms like Render / Railway / Heroku detect a Python app.

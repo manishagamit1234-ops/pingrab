@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: pingrab-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://pingrab.opterik.com
+      - key: PINGRAB_OPEN
+        value: "0"

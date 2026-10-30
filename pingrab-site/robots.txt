@@ -1,0 +1,9 @@
+# PinGrab - https://pingrab.opterik.com
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Downloads are proxied streams, not pages worth indexing
+Disallow: /api/download
+
+Sitemap: https://pingrab.opterik.com/sitemap.xml

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>PinGrab - Pinterest Video Downloader (Free HD, No Watermark)</title>
+<meta name="description" content="Free Pinterest video downloader. Paste a pinterest.com or pin.it link and save the original MP4 in HD 720p - no watermark, no app, no sign-up. Works on iPhone, Android and PC.">
+<meta name="keywords" content="pinterest video downloader, download pinterest video, pinterest mp4 download, pin.it downloader, pinterest video download hd">
+<meta name="theme-color" content="#fffaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#120b0e" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<script>
+  /* Set the theme before paint so there is no flash. */
+  (function () {
+    try {
+      var t = localStorage.getItem('pingrab_theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* ignore */ }
+  })();
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-56Z4LHXTWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-56Z4LHXTWY');
+</script>
+
+<link rel="canonical" href="https://pingrab.opterik.com/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PinGrab">
+<meta property="og:title" content="Pinterest Video Downloader - save any pin in HD">
+<meta property="og:description" content="Paste a Pinterest link and download the original MP4 in 720p. Free, no watermark, no sign-up.">
+<meta property="og:url" content="https://pingrab.opterik.com/">
+<meta property="og:image" content="https://pingrab.opterik.com/icons/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PinGrab - Pinterest Video Downloader">
+<meta name="twitter:description" content="Save Pinterest videos in HD 720p. Free, fast, no watermark.">
+<meta name="twitter:image" content="https://pingrab.opterik.com/icons/og-image.png">
+
+<!-- icons / PWA -->
+<link rel="icon" href="icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PinGrab">
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="google-adsense-account" content="ca-pub-9399495098326825">
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/config.js"></script>
+<script src="js/downloader.js" defer></script>
+<script src="js/app.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PinGrab",
+      "url": "https://pingrab.opterik.com/",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any (browser)",
+      "browserRequirements": "Requires JavaScript",
+      "description": "Free Pinterest video downloader that saves public pins as MP4 in up to 720p HD, without a watermark.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Download Pinterest videos as MP4",
+        "Up to 720p HD with original audio",
+        "No watermark and no sign-up",
+        "Works on iPhone, Android and desktop",
+        "Cover image download",
+        "Installable web app (PWA)"
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to download a Pinterest video",
+      "totalTime": "PT1M",
+      "step": [
+        { "@type": "HowToStep", "name": "Copy the pin link", "text": "Open the video on Pinterest, tap the three dots and choose Copy link." },
+        { "@type": "HowToStep", "name": "Paste it in PinGrab", "text": "Paste the link into the box and press Get video." },
+        { "@type": "HowToStep", "name": "Download the MP4", "text": "Preview the video, choose a quality and press Download MP4." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I download a Pinterest video?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Open the pin on Pinterest, tap the three dots and copy the link. Paste it into PinGrab and press Get video, then choose Download MP4. On iPhone the file is saved to the Files app; on Android and desktop it goes to Downloads." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is PinGrab free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. PinGrab is free and does not require an account, an app install or an email address. Ads help keep the service online." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the video have a watermark?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. PinGrab returns the MP4 file that Pinterest itself serves, so there is no extra logo or watermark added by us." }
+        },
+        {
+          "@type": "Question",
+          "name": "What quality can I get?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most pins are available as a progressive MP4 in 720p with the original audio. The maximum resolution depends on what Pinterest published. If a pin only offers adaptive HLS streams, PinGrab gives you the best direct MP4 that exists." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work on iPhone and Android?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Open PinGrab in Safari on iPhone or Chrome on Android, paste the link and download. If you are inside the Pinterest in-app browser, use the menu and choose Open in browser first." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I download private or deleted pins?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. PinGrab can only read public pins. Private boards, deleted pins and pins that Pinterest restricts by region will show an error." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is downloading Pinterest videos legal?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Download only videos you own or have permission to use, and keep them for personal use. Re-uploading someone else's video can infringe copyright. PinGrab is not affiliated with Pinterest, Inc." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does PinGrab say this is an image pin?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not every pin is a video. When the pin is a photo, PinGrab offers the full-size JPG instead of an MP4." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9399495098326825" crossorigin="anonymous"></script></head>
+
+<body>
+<div class="opterik-bar"><a href="https://opterik.com/" rel="noopener" target="_blank">← Back to Opterik.com</a></div>
+<a class="skip-link" href="#downloader">Skip to the downloader</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="PinGrab home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="pg-brand" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ff334b"/><stop offset="1" stop-color="#d4001f"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="16" fill="url(#pg-brand)"/>
+        <circle cx="32" cy="26" r="14.5" fill="#fff"/>
+        <path d="M20.5 35.5h23L32 51z" fill="#fff"/>
+        <rect x="29.4" y="16.5" width="5.2" height="12.8" rx="2.6" fill="url(#pg-brand)"/>
+        <path d="M24.1 28.3h15.8L32 37.6z" fill="url(#pg-brand)"/>
+      </svg>
+      <span class="brand-name">Pin<span>Grab</span></span>
+    </a>
+
+    <button class="nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="#downloader">Downloader</a>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="help.html">Help</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost" type="button" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" title="Light / dark">
+        <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="btn btn-primary" type="button" id="install-btn" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        <span class="install-label">Install app</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow"><span class="dot"></span> <b>Free</b> · 720p HD · No watermark</p>
+      <h1>Download Pinterest videos <em>in one tap</em></h1>
+      <p class="lead">
+        Paste a Pinterest pin or <b>pin.it</b> link. PinGrab finds the original MP4 and saves it
+        to your phone or computer - <b>no app, no sign-up, no watermark</b>.
+      </p>
+
+      <!-- ------------------------- DOWNLOADER ------------------------- -->
+      <section class="card downloader" id="downloader" aria-labelledby="downloader-label">
+        <form id="pin-form" novalidate>
+          <label class="field-label" id="downloader-label" for="pin-url">Pinterest link</label>
+          <div class="input-row">
+            <div class="input-wrap" id="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 13.4a4.5 4.5 0 0 0 6.4 0l2.6-2.6a4.5 4.5 0 1 0-6.4-6.4l-1.5 1.5"/><path d="M13.4 10.6a4.5 4.5 0 0 0-6.4 0l-2.6 2.6a4.5 4.5 0 1 0 6.4 6.4l1.5-1.5"/></svg>
+              </span>
+              <input id="pin-url" name="url" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false"
+                     placeholder="https://www.pinterest.com/pin/123456789/" aria-describedby="link-hint">
+              <button type="button" class="input-action" id="paste-btn">Paste</button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+              <span class="spinner" hidden aria-hidden="true"></span>
+              <span class="btn-label">Get video</span>
+              <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+          <p class="field-hint" id="link-hint">
+            Works with <code>pinterest.com/pin/…</code>, <code>in.pinterest.com</code>, other regional domains and <code>pin.it/…</code> short links.
+          </p>
+        </form>
+
+        <div class="status" id="status" role="status" aria-live="polite" hidden></div>
+
+        <div class="api-warning" id="api-warning" hidden>
+          <p><b>The downloader backend is not running.</b> This site needs its small Python backend to read Pinterest pages.</p>
+          <p>If you are the site owner, start it with <code>python server.py</code> (or <code>serve.ps1</code>) and open <code>http://localhost:8787</code>. If you are a visitor, the site owner needs to deploy the backend.</p>
+          <p><a class="btn btn-sm" href="help.html#hosting">How to run it</a></p>
+        </div>
+
+        <div class="skeleton" id="skeleton" hidden aria-hidden="true">
+          <div class="sk-media"></div>
+          <div class="sk-body">
+            <div class="sk-line w40"></div>
+            <div class="sk-line tall w70"></div>
+            <div class="sk-line w55"></div>
+            <div class="sk-line w40"></div>
+            <div class="sk-line btn"></div>
+          </div>
+        </div>
+
+        <!-- result -->
+        <article class="result" id="result" hidden aria-live="polite">
+          <div class="result-media">
+            <img id="res-thumb" alt="" width="360" height="480" decoding="async">
+            <button type="button" class="play-btn" id="res-play" hidden aria-label="Preview video">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </button>
+            <span class="duration-badge" id="res-duration" hidden></span>
+          </div>
+          <div class="result-body">
+            <p class="kicker"><span class="dot"></span> <span id="res-kicker">Video found</span></p>
+            <h2 class="result-title" id="res-title">Pinterest video</h2>
+            <p class="result-author" id="res-author" hidden></p>
+            <p class="result-desc" id="res-desc" hidden></p>
+            <ul class="chips" id="res-chips"></ul>
+            <div class="quality-select" id="res-quality-wrap" hidden>
+              <label for="res-quality">Quality</label>
+              <select id="res-quality"></select>
+            </div>
+            <div class="result-actions">
+              <a class="btn btn-primary btn-lg" id="res-download" href="#" download>Download MP4</a>
+              <a class="btn" id="res-cover" href="#" hidden>Cover JPG</a>
+              <button class="btn btn-icon" type="button" id="res-copy" title="Copy direct video link" aria-label="Copy direct video link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+              <button class="btn btn-icon" type="button" id="res-share" title="Share this pin" aria-label="Share this pin">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>
+              </button>
+            </div>
+            <p class="result-note">
+              Saves as <code id="res-filename">pingrab-video.mp4</code> ·
+              <a id="res-open" href="#" target="_blank" rel="noopener noreferrer">View on Pinterest</a>
+            </p>
+          </div>
+        </article>
+
+        <div class="recent" id="recent" hidden>
+          <div class="recent-head">
+            <h3>Recent downloads</h3>
+            <button type="button" class="recent-clear" id="recent-clear">Clear</button>
+          </div>
+          <div class="recent-list" id="recent-list"></div>
+        </div>
+      </section>
+
+      <ul class="badges" aria-label="Highlights">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg> 720p MP4</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No watermark</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg> iPhone &amp; Android</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7z"/></svg> No sign-up</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="ad-slot" data-ad="top" aria-hidden="true"></div>
+  </div>
+
+  <!-- ============================ TOP AD ============================ -->
+  <section class="ad-band" aria-label="Advertisement">
+    <div class="ad-slot ad-desktop-only" data-adsterra data-key="cb53b96b1cd42f9dfb328cf75f065433" data-width="728" data-height="90">
+      <span class="ad-label">Advertisement</span>
+      <script>atOptions = { 'key' : 'cb53b96b1cd42f9dfb328cf75f065433', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };</script>
+      <script src="https://bauval.org/22/cb53b96b1cd42f9dfb328cf75f065433"></script>
+    </div>
+    <div class="ad-slot ad-mobile-only" data-adsterra data-key="cc16fff6856346e17c7c21f9e9f285dd" data-width="320" data-height="50">
+      <span class="ad-label">Advertisement</span>
+      <script>atOptions = { 'key' : 'cc16fff6856346e17c7c21f9e9f285dd', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };</script>
+      <script src="https://bauval.org/22/cc16fff6856346e17c7c21f9e9f285dd"></script>
+    </div>
+  </section>
+
+  <!-- ============================ HOW ============================ -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>How to download a Pinterest video</h2>
+        <p>Three steps, about ten seconds. No account and nothing to install.</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="step-num">1</span>
+          <h3>Copy the pin link</h3>
+          <p>Open the video on Pinterest and tap <b>•••</b> then <b>Copy link</b>. On desktop, copy the address bar.</p>
+        </article>
+        <article class="step">
+          <span class="step-num">2</span>
+          <h3>Paste it above</h3>
+          <p>Drop the link into the box and press <b>Get video</b>. PinGrab reads the pin and finds the original file.</p>
+        </article>
+        <article class="step">
+          <span class="step-num">3</span>
+          <h3>Download the MP4</h3>
+          <p>Preview it, pick a quality if there is more than one, and tap <b>Download MP4</b>. Done.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FEATURES ============================ -->
+  <section class="section section-soft" id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why people use PinGrab</h2>
+        <p>A downloader that just works - on the phone and on the desktop.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span>
+          <h3>HD 720p MP4</h3>
+          <p>The highest progressive MP4 Pinterest offers, with the original audio track included.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V6s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></span>
+          <h3>No watermark</h3>
+          <p>You get the clean file that Pinterest serves - no logos, no overlays, no re-encoding.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+          <h3>iPhone &amp; Android</h3>
+          <p>Open it in Safari or Chrome. Files land in the Downloads folder or the Files app.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg></span>
+          <h3>Fast and cached</h3>
+          <p>Popular pins are cached for 30 minutes, so repeat downloads start instantly.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 21"/></svg></span>
+          <h3>Cover image too</h3>
+          <p>Want the still frame? Grab the poster as a full-size JPG with one more tap.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Private by design</h3>
+          <p>No account, no email, no file storage. Links are read, converted to a direct URL and forgotten.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SUPPORTED ============================ -->
+  <section class="section" id="supported">
+    <div class="container">
+      <div class="section-head">
+        <h2>Supported links and quality</h2>
+        <p>One pin at a time - videos, photos and the links that Pinterest actually shares.</p>
+      </div>
+      <div class="support-grid">
+        <div class="panel">
+          <h3>Accepted link formats</h3>
+          <p>Anything that points to a single pin works.</p>
+          <ul class="example-list">
+            <li><code>https://www.pinterest.com/pin/361554676351203398/</code><span>standard</span></li>
+            <li><code>https://in.pinterest.com/pin/4855512095891619/</code><span>regional</span></li>
+            <li><code>https://pin.it/4Xy8aBc</code><span>short link</span></li>
+            <li><code>pinterest.com/pin/…</code><span>without https</span></li>
+          </ul>
+          <p class="small muted" style="margin:12px 0 0">
+            Board, profile and search links are not supported because they do not point to one video.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>What you can save</h3>
+          <table class="quality-table">
+            <thead><tr><th>File</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>Video</td><td><b>MP4, H.264</b> - up to 720p, original audio, no watermark</td></tr>
+              <tr><td>Cover</td><td><b>JPG</b> - original poster frame, full size</td></tr>
+              <tr><td>Photo pins</td><td><b>JPG</b> - full-size still image</td></tr>
+              <tr><td>File size</td><td>Typically 2-20 MB, shown before you download</td></tr>
+            </tbody>
+          </table>
+          <p class="small muted" style="margin:0">
+            Pinterest sometimes publishes 1080p only as an adaptive HLS stream. Browsers cannot merge
+            those tracks into one file, so PinGrab always picks the best ready-to-play MP4.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="ad-slot" data-ad="mid" aria-hidden="true"></div>
+  </div>
+
+  <!-- ============================ IN-CONTENT AD ============================ -->
+  <div class="ad-inline" aria-label="Advertisement">
+    <div class="ad-slot" data-adsterra data-key="1a907b26ea5d6f7665914fd6825a100c" data-width="300" data-height="250">
+      <span class="ad-label">Advertisement</span>
+      <script>atOptions = { 'key' : '1a907b26ea5d6f7665914fd6825a100c', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };</script>
+      <script src="https://bauval.org/22/1a907b26ea5d6f7665914fd6825a100c"></script>
+    </div>
+  </div>
+
+  <!-- ============================ FAQ ============================ -->
+  <section class="section section-soft" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>Frequently asked questions</h2>
+        <p>Short answers to the things people ask before their first download.</p>
+      </div>
+      <div class="faq">
+        <details class="faq-item">
+          <summary>How do I download a Pinterest video?</summary>
+          <div class="faq-body">
+            <p>Open the pin on Pinterest, tap the three dots and choose <b>Copy link</b>. Paste it into PinGrab and press <b>Get video</b>, then <b>Download MP4</b>. On iPhone the file is saved in the Files app; on Android and desktop it goes to the Downloads folder.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Is PinGrab free?</summary>
+          <div class="faq-body">
+            <p>Yes. There is no account, no app install and no email address. The site is supported by ads, which is why you may see an ad block above and below the tool.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Will the video have a watermark?</summary>
+          <div class="faq-body">
+            <p>No. PinGrab returns the MP4 that Pinterest itself serves. We do not re-encode it, so there is no extra logo or watermark added by us.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>What quality can I get?</summary>
+          <div class="faq-body">
+            <p>Most pins are available as a progressive MP4 in 720p with the original audio. The maximum resolution depends on what the creator uploaded. If a pin is only published as an adaptive HLS stream, PinGrab gives you the best direct MP4 that exists.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it work on iPhone and Android?</summary>
+          <div class="faq-body">
+            <p>Yes. Use Safari on iPhone or Chrome on Android. If you opened the site inside Pinterest's in-app browser, tap the menu and choose <b>Open in browser</b> first - in-app browsers often block file downloads.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I download private or deleted pins?</summary>
+          <div class="faq-body">
+            <p>No. PinGrab can only read public pins. Private boards, deleted pins and pins that Pinterest restricts by region will show an error message.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Why does PinGrab say this is an image pin?</summary>
+          <div class="faq-body">
+            <p>Not every pin is a video. When the pin is a photo, PinGrab offers the full-size JPG instead of an MP4, so you can still save what you found.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Is downloading Pinterest videos legal?</summary>
+          <div class="faq-body">
+            <p>Download only videos you own or have permission to use, and keep them for personal use. Re-uploading someone else's video can infringe copyright and break Pinterest's terms. PinGrab is an independent tool and is not affiliated with Pinterest, Inc.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ DISCLAIMER ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="disclaimer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7z"/><path d="M12 9v4M12 16h.01"/></svg>
+        <p><strong>Personal use only.</strong> PinGrab does not host any videos. It links to files that are already public on Pinterest. Please respect creators' copyright, Pinterest's terms of service and your local law. We are not affiliated with Pinterest, Inc.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="ad-slot" data-ad="bottom" aria-hidden="true"></div>
+  </div>
+</main>
+
+<!-- ============================ NATIVE AD ============================ -->
+<div class="ad-native-band" aria-label="Sponsored content">
+  <div class="ad-slot ad-native-slot" data-adsterra data-native="true">
+    <script data-cfasync="false" src="https://bauval.org/21/bb4118fe8ad3afcaf250d6c98615e68f"></script>
+    <div id="container-bb4118fe8ad3afcaf250d6c98615e68f"></div>
+    <span class="ad-label">Sponsored</span>
+  </div>
+</div>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="PinGrab home">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#e60023"/>
+            <circle cx="32" cy="26" r="14.5" fill="#fff"/>
+            <path d="M20.5 35.5h23L32 51z" fill="#fff"/>
+            <rect x="29.4" y="16.5" width="5.2" height="12.8" rx="2.6" fill="#e60023"/>
+            <path d="M24.1 28.3h15.8L32 37.6z" fill="#e60023"/>
+          </svg>
+          <span class="brand-name">Pin<span>Grab</span></span>
+        </a>
+        <p>Save Pinterest videos and cover images in their original quality. Free, fast and private.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tool</h4>
+        <ul>
+          <li><a href="#downloader">Video downloader</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#supported">Supported links</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help &amp; legal</h4>
+        <ul>
+          <li><a href="help.html">Help centre</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of use</a></li>
+          <li><a href="help.html#hosting">Run it yourself</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2026</span> PinGrab. All rights reserved.</p>
+      <p>Not affiliated with Pinterest, Inc. Pinterest is a trademark of Pinterest, Inc.</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="preview-dialog" id="preview-dialog" aria-label="Video preview">
+  <div class="preview-shell">
+    <button type="button" class="preview-close" id="preview-close" aria-label="Close preview">&times;</button>
+    <video id="preview-video" controls playsinline preload="metadata"></video>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <div class="container" style="padding:20px 0">
+    <div class="status" data-tone="error">
+      <p style="margin:0">PinGrab needs JavaScript to read the pin and start the download. Please enable JavaScript in your browser.</p>
+    </div>
+  </div>
+</noscript>
+</body>
+</html>
+
+
